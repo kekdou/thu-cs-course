@@ -19,7 +19,7 @@ pip install -r requirements.txt
 2. 训练模型
 
 ```shell
-python main train [option]
+python main.py train [option]
 ```
 option 包括实现的模型
 - mlp
