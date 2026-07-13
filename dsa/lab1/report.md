@@ -106,7 +106,7 @@ A4:
 1. `solution_1.cpp` 以及 `solution_2.cpp` 中 `int sum = 0` 应该在 for 循环内部，通过静态检查
 2. `solution_2.cpp` 中第 26 行应为 `sum += rowsum[x + j][y + b - 1] - rowsum[x + j][y - 1];`，通过静态检查
 3. `solution_1.cpp` 以及 `solution_2.cpp` 中数组大小只给到 2000，但是从 1 开始，可能存在数组越界，通过静态检查
-4. `solution_1.cpp` 以及 `solution_2.cpp` 中sum 可能到达 $4 * 10^11$，使用 int 可能会溢出，应该用 long long，通过 大语言模型
+4. `solution_1.cpp` 以及 `solution_2.cpp` 中sum 可能到达 $4 * 10^{11}$，使用 int 可能会溢出，应该用 long long，通过 大语言模型
 
 ### 3B
 
