@@ -1,7 +1,7 @@
 import sys
 import config
-from my_code import train_model
-from my_code import test_performance
+from src import train_model
+from src import test_performance
 from utils import initialize_data
 from utils import initialize_csv
 
