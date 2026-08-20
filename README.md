@@ -6,7 +6,7 @@
 - `dsa/`: 数据结构
 - `iai/`: 人工智能导论
 - `hpc/`: 高性能计算导论
-- `program_practice`: 程序设计训练
+- `program_practice/`: 程序设计训练
 
 ## 留声机
 
