@@ -1,0 +1,61 @@
+{% extends "jobs/base.html" %}
+{% load static %}
+
+{% block title %}{{ company.name }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'jobs/css/list.css' %}">
+<link rel="stylesheet" href="{% static 'jobs/css/detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<article class="detail-layout">
+    <section class="detail-main">
+        <a class="back-link" href="{% url 'company_list' %}" onclick="if (window.history.length > 1) { event.preventDefault(); window.history.back(); }">返回</a>
+
+        <p class="eyebrow">Company Detail</p>
+        <h1>{{ company.name }}</h1>
+
+        <div class="detail-meta">
+            <span>{{ company.industry|default:"行业未知" }}</span>
+            <span>{{ company.scale|default:"规模未知" }}</span>
+        </div>
+
+        <section class="content-block">
+            <h2>公司简介</h2>
+            <div class="description">{{ company.summary|default:"暂无公司简介"|linebreaks }}</div>
+        </section>
+
+        <section class="content-block">
+            <h2>招聘职位</h2>
+            <div class="card-list">
+                {% for job in company_jobs %}
+                    <article class="job-card compact-card">
+                        <div>
+                            <h3><a href="{% url 'job_detail' job.id %}">{{ job.title }}</a></h3>
+                            <p class="muted">{{ job.published_time|default:"发布时间未知" }}</p>
+                        </div>
+                        <div class="job-meta">
+                            <span>{{ job.city|default:"地点未知" }}</span>
+                            <span>{{ job.salary|default:"薪资面议" }}</span>
+                        </div>
+                    </article>
+                {% empty %}
+                    <p class="empty">该公司暂时没有关联职位。</p>
+                {% endfor %}
+            </div>
+        </section>
+    </section>
+
+    <aside class="company-panel">
+        {% if company.logo_url %}
+            <img class="company-logo large-logo" src="{{ company.logo_url }}" alt="{{ company.name }}">
+        {% else %}
+            <img class="company-logo large-logo" src="{% static 'jobs/images/company_default.png' %}" alt="默认公司图标">
+        {% endif %}
+        <h2>{{ company.name }}</h2>
+        <p>{{ company.industry|default:"行业未知" }}</p>
+        <p>{{ company.scale|default:"规模未知" }}</p>
+    </aside>
+</article>
+{% endblock %}

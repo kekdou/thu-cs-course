@@ -1,0 +1,108 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th,
+td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.34);
+  padding: 13px 12px;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.problem-list-table {
+  min-width: 760px;
+}
+
+.teacher-problem-table {
+  min-width: 920px;
+}
+
+.submission-table {
+  min-width: 900px;
+}
+
+.users-table {
+  min-width: 820px;
+}
+
+.backups-table {
+  min-width: 760px;
+}
+
+.case-config-table {
+  min-width: 900px;
+}
+
+.problem-list-table .col-id { width: 10%; }
+.problem-list-table .col-title { width: 30%; }
+.problem-list-table .col-short { width: 20%; }
+.problem-list-table .col-tags { width: 20%; }
+.problem-list-table .col-limit { width: 20%; }
+
+.teacher-problem-table .col-id { width: 9%; }
+.teacher-problem-table .col-title { width: 27%; }
+.teacher-problem-table .col-short { width: 16%; }
+.teacher-problem-table .col-tags { width: 16%; }
+.teacher-problem-table .col-limit { width: 16%; }
+.teacher-problem-table .col-actions { width: 16%; }
+
+.submission-table .col-time { width: 23%; }
+.submission-table .col-user { width: 22%; }
+.submission-table .col-id { width: 16%; }
+.submission-table .col-short { width: 13%; }
+.submission-table .col-score { width: 13%; }
+
+.users-table .col-user { width: 26%; }
+.users-table .col-role { width: 24%; }
+.users-table .col-time { width: 26%; }
+.users-table .col-active { width: 24%; }
+
+.backups-table .col-title,
+.backups-table .col-time,
+.backups-table .col-actions {
+  width: 33.333%;
+}
+
+.case-config-table th:nth-child(1),
+.case-config-table td:nth-child(1) { width: 14%; }
+.case-config-table th:nth-child(2),
+.case-config-table td:nth-child(2) { width: 10%; }
+.case-config-table th:nth-child(3),
+.case-config-table td:nth-child(3) { width: 10%; }
+.case-config-table th:nth-child(4),
+.case-config-table td:nth-child(4),
+.case-config-table th:nth-child(5),
+.case-config-table td:nth-child(5) { width: 33%; }
+
+th {
+  color: #607089;
+  font-size: 13px;
+  font-weight: 760;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+tr {
+  transition: background 160ms ease;
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.38);
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover td {
+  color: var(--primary-strong);
+}
+
+.strong-cell {
+  font-weight: 800;
+  color: var(--text);
+}

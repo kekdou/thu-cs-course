@@ -1,0 +1,92 @@
+{% extends "jobs/base.html" %}
+{% load static %}
+
+{% block title %}搜索结果{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'jobs/css/list.css' %}">
+<link rel="stylesheet" href="{% static 'jobs/css/search.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="page-title search-title">
+    <p class="eyebrow">Search</p>
+    <h1>搜索结果</h1>
+    <form class="search-panel" action="{% url 'search' %}" method="get">
+        <input name="q" type="search" maxlength="50" placeholder="输入 50 字以内关键词" value="{{ keyword }}">
+        <div class="search-type">
+            <label>
+                <input name="type" type="radio" value="job" {% if search_type == "job" %}checked{% endif %}>
+                <span>职位</span>
+            </label>
+            <label>
+                <input name="type" type="radio" value="company" {% if search_type == "company" %}checked{% endif %}>
+                <span>公司</span>
+            </label>
+        </div>
+        <button type="submit">搜索</button>
+    </form>
+
+    {% if has_searched %}
+        <p>
+            在 {{ search_type_text }} 中搜索 “{{ keyword }}”，
+            共找到 {{ total_results }} 条结果，
+            耗时 {{ elapsed_time|floatformat:4 }} 秒
+        </p>
+    {% else %}
+        <p>请输入关键词后开始搜索。</p>
+    {% endif %}
+</section>
+
+{% if has_searched %}
+    {% if search_type == "company" %}
+        <section class="company-grid">
+            {% for company in page_obj %}
+                <article class="company-card">
+                    {% if company.logo_url %}
+                        <img class="company-logo" src="{{ company.logo_url }}" alt="{{ company.name }}">
+                    {% else %}
+                        <img class="company-logo" src="{% static 'jobs/images/company_default.png' %}" alt="默认公司图标">
+                    {% endif %}
+                    <div>
+                        <h2><a href="{% url 'company_detail' company.id %}">{{ company.name }}</a></h2>
+                        <p class="muted">{{ company.summary|default:"暂无公司简介"|truncatechars:90 }}</p>
+                        <div class="job-meta company-meta">
+                            <span>{{ company.industry|default:"行业未知" }}</span>
+                            <span>{{ company.scale|default:"规模未知" }}</span>
+                        </div>
+                    </div>
+                </article>
+            {% empty %}
+                <p class="empty">没有找到匹配的公司。</p>
+            {% endfor %}
+        </section>
+    {% else %}
+        <section class="card-list">
+            {% for job in page_obj %}
+                <article class="job-card">
+                    <div>
+                        <h2><a href="{% url 'job_detail' job.id %}">{{ job.title }}</a></h2>
+                        <p class="muted">
+                            {% if job.company %}
+                                <a href="{% url 'company_detail' job.company.id %}">{{ job.company.name }}</a>
+                            {% else %}
+                                未知公司
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="job-meta">
+                        <span>{{ job.city|default:"地点未知" }}</span>
+                        <span>{{ job.salary|default:"薪资面议" }}</span>
+                        <span>{{ job.published_time|default:"发布时间未知" }}</span>
+                    </div>
+                </article>
+            {% empty %}
+                <p class="empty">没有找到匹配的职位。</p>
+            {% endfor %}
+        </section>
+    {% endif %}
+
+    {% include "jobs/pagination.html" %}
+{% endif %}
+{% endblock %}

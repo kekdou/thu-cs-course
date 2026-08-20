@@ -1,0 +1,225 @@
+.card-list,
+.company-list,
+.company-grid {
+    display: grid;
+    gap: 18px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.52);
+    border-radius: var(--radius-lg);
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.46), rgba(255, 255, 255, 0.2)),
+        rgba(255, 255, 255, 0.28);
+    box-shadow: var(--inner-light);
+    backdrop-filter: blur(18px) saturate(1.2);
+    perspective: 1200px;
+}
+
+.company-grid {
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+}
+
+.job-card,
+.company-list-card,
+.company-card {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.56);
+    border-radius: var(--radius-md);
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.42));
+    box-shadow: var(--shadow-soft), var(--inner-light);
+    overflow: hidden;
+    backdrop-filter: blur(24px) saturate(1.25);
+    transform: translateZ(0);
+    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.job-card::before,
+.company-list-card::before,
+.company-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 5px;
+    background: linear-gradient(180deg, var(--accent), var(--violet), var(--cyan));
+    opacity: 0.88;
+}
+
+.job-card::after,
+.company-list-card::after,
+.company-card::after {
+    content: "";
+    position: absolute;
+    right: -42px;
+    top: -42px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 122, 255, 0.16), transparent 68%);
+    pointer-events: none;
+}
+
+.job-card:hover,
+.company-list-card:hover,
+.company-card:hover {
+    transform: translateY(-5px) scale(1.006);
+    border-color: rgba(255, 255, 255, 0.82);
+    box-shadow: var(--shadow);
+}
+
+.job-card,
+.company-list-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px 26px 24px 30px;
+}
+
+.company-card {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    gap: 18px;
+    padding: 24px 24px 24px 28px;
+}
+
+.company-main {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 18px;
+    min-width: 0;
+}
+
+.job-card h2,
+.company-list-card h2,
+.company-card h2,
+.compact-card h3 {
+    margin: 0 0 8px;
+    line-height: 1.28;
+}
+
+.job-card h2,
+.company-list-card h2,
+.company-card h2 {
+    font-size: 22px;
+    letter-spacing: -0.03em;
+}
+
+.job-card h2 a,
+.company-list-card h2 a,
+.company-card h2 a,
+.compact-card h3 a {
+    color: var(--ink);
+}
+
+.job-card h2 a:hover,
+.company-list-card h2 a:hover,
+.company-card h2 a:hover,
+.compact-card h3 a:hover {
+    color: var(--accent-dark);
+}
+
+.job-card .muted,
+.company-list-card .muted,
+.company-card .muted {
+    margin: 0;
+}
+
+.company-card .muted,
+.company-list-card .muted {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.job-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-content: center;
+    gap: 8px;
+    min-width: 280px;
+}
+
+.job-meta span,
+.detail-meta span,
+.tags span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 7px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.54);
+    color: #334155;
+    font-size: 14px;
+    font-weight: 800;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.company-meta {
+    justify-content: flex-start;
+    min-width: auto;
+    margin-top: 12px;
+}
+
+.company-list-meta {
+    min-width: 260px;
+}
+
+.company-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.12), var(--inner-light);
+}
+
+.company-card .company-logo {
+    width: 76px;
+    height: 76px;
+    border-radius: 22px;
+}
+
+.compact-card {
+    box-shadow: none;
+}
+
+.compact-card:hover {
+    box-shadow: var(--shadow-soft);
+}
+
+@media (max-width: 760px) {
+    .card-list,
+    .company-list,
+    .company-grid {
+        padding: 12px;
+        border-radius: 26px;
+    }
+
+    .job-card,
+    .company-list-card {
+        display: block;
+        padding: 22px 20px 22px 24px;
+    }
+
+    .company-main,
+    .company-card {
+        grid-template-columns: 72px minmax(0, 1fr);
+    }
+
+    .company-logo,
+    .company-card .company-logo {
+        width: 72px;
+        height: 72px;
+        border-radius: 20px;
+    }
+
+    .job-meta {
+        justify-content: flex-start;
+        min-width: auto;
+        margin-top: 16px;
+    }
+}

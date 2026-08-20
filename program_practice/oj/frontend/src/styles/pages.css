@@ -1,0 +1,154 @@
+.auth-panel {
+  width: min(520px, 100%);
+  margin: 6vh auto;
+  padding: 28px 36px 34px;
+  box-shadow: var(--shadow-deep), var(--shadow-inner);
+}
+
+.stack {
+  display: grid;
+  gap: 14px;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 2px auto 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.segmented button {
+  min-height: 56px;
+  font-size: 18px;
+  font-weight: 760;
+  border-color: rgba(255, 255, 255, 0.66);
+  background: rgba(255, 255, 255, 0.34);
+  box-shadow: var(--shadow-inner), 0 16px 34px rgba(38, 82, 130, 0.08);
+}
+
+.segmented button.active {
+  background: linear-gradient(155deg, rgba(70, 174, 255, 0.96), var(--primary) 48%, #085fd8);
+  border-color: rgba(49, 87, 232, 0.72);
+  color: #ffffff;
+  box-shadow: 0 18px 46px rgba(8, 119, 255, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.split-view {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  gap: 18px;
+  align-items: start;
+}
+
+.problem-body,
+.submit-panel,
+.editor-panel {
+  padding: 20px;
+}
+
+.submit-panel {
+  position: sticky;
+  top: 20px;
+}
+
+.preline {
+  white-space: pre-line;
+}
+
+.case-config-table pre {
+  max-height: 180px;
+  margin: 0;
+  text-align: left;
+}
+
+.config-meta {
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.sample-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.sample-pair {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.sample-pair h3 {
+  margin: 0;
+}
+
+.sample-pair span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+  margin-bottom: 6px;
+}
+
+.code-editor {
+  min-height: 420px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  line-height: 1.5;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.summary-grid div {
+  padding: 12px;
+}
+
+.summary-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.source-view {
+  max-height: 360px;
+}
+
+.log-item {
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.log-item header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.log-header-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.log-header-tags > span:first-child {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.log-meta {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 8px 0;
+}
+

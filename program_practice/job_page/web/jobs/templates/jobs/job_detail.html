@@ -1,0 +1,60 @@
+{% extends "jobs/base.html" %}
+{% load static %}
+
+{% block title %}{{ job.title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'jobs/css/detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<article class="detail-layout">
+    <section class="detail-main">
+        <a class="back-link" href="{% url 'job_list' %}" onclick="if (window.history.length > 1) { event.preventDefault(); window.history.back(); }">返回</a>
+
+        <p class="eyebrow">Job Detail</p>
+        <h1>{{ job.title }}</h1>
+
+        <div class="detail-meta">
+            <span>{{ job.salary|default:"薪资面议" }}</span>
+            <span>{{ job.city|default:"地点未知" }}</span>
+            <span>{{ job.experience|default:"经验不限" }}</span>
+            <span>{{ job.education|default:"学历不限" }}</span>
+            <span>{{ job.published_time|default:"发布时间未知" }}</span>
+        </div>
+
+        {% if job.tag_list %}
+            <div class="tags">
+                {% for tag in job.tag_list %}
+                    <span>{{ tag }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <section class="content-block">
+            <h2>岗位内容</h2>
+            <div class="description">{{ job.description|default:"暂无岗位描述"|linebreaks }}</div>
+        </section>
+
+        {% if job.job_url %}
+            <a class="origin-link" href="{{ job.job_url }}" target="_blank" rel="noopener">查看原始职位页面</a>
+        {% endif %}
+    </section>
+
+    <aside class="company-panel">
+        <h2>发布公司</h2>
+        {% if job.company %}
+            {% if job.company.logo_url %}
+                <img class="company-logo" src="{{ job.company.logo_url }}" alt="{{ job.company.name }}">
+            {% else %}
+                <img class="company-logo" src="{% static 'jobs/images/company_default.png' %}" alt="默认公司图标">
+            {% endif %}
+            <h3><a href="{% url 'company_detail' job.company.id %}">{{ job.company.name }}</a></h3>
+            <p>{{ job.company.industry|default:"行业未知" }}</p>
+            <p>{{ job.company.scale|default:"规模未知" }}</p>
+        {% else %}
+            <p>暂无公司信息</p>
+        {% endif %}
+    </aside>
+</article>
+{% endblock %}

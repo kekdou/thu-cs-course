@@ -1,0 +1,90 @@
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    left: 10px;
+    right: 10px;
+    margin-top: 10px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    min-width: auto;
+  }
+
+  .topbar nav {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .topbar nav button {
+    flex: 0 0 auto;
+  }
+
+  .account {
+    margin-left: auto;
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .content {
+    padding: 154px 16px 24px;
+  }
+
+  .page-head,
+  .split-view,
+  .sample-grid,
+  .case-grid,
+  .filter-bar,
+  .form-grid,
+  .summary-grid,
+  .testcase-editor {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-actions {
+    justify-content: flex-start;
+  }
+
+  .submit-panel {
+    position: static;
+  }
+
+  .page-head {
+    display: grid;
+  }
+
+  .span-2 {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar {
+    gap: 8px;
+  }
+
+  .brand span {
+    display: none;
+  }
+
+  .account strong {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .content {
+    padding-top: 162px;
+  }
+}

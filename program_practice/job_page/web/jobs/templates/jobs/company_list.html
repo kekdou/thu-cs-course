@@ -1,0 +1,44 @@
+{% extends "jobs/base.html" %}
+{% load static %}
+
+{% block title %}公司列表{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'jobs/css/list.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="page-title">
+    <p class="eyebrow">Company List</p>
+    <h1>公司列表</h1>
+    <p>当前共收录 {{ total_companies }} 家公司</p>
+</section>
+
+<section class="company-list">
+    {% for company in page_obj %}
+        <article class="company-list-card">
+            <div class="company-main">
+                {% if company.logo_url %}
+                    <img class="company-logo" src="{{ company.logo_url }}" alt="{{ company.name }}">
+                {% else %}
+                    <img class="company-logo" src="{% static 'jobs/images/company_default.png' %}" alt="默认公司图标">
+                {% endif %}
+
+                <div>
+                    <h2><a href="{% url 'company_detail' company.id %}">{{ company.name }}</a></h2>
+                    <p class="muted">{{ company.summary|default:"暂无公司简介"|truncatechars:110 }}</p>
+                </div>
+            </div>
+
+            <div class="job-meta company-list-meta">
+                <span>{{ company.industry|default:"行业未知" }}</span>
+                <span>{{ company.scale|default:"规模未知" }}</span>
+            </div>
+        </article>
+    {% empty %}
+        <p class="empty">暂时没有公司数据。</p>
+    {% endfor %}
+</section>
+
+{% include "jobs/pagination.html" %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "jobs/base.html" %}
+{% load static %}
+
+{% block title %}职位列表{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'jobs/css/list.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="page-title">
+    <p class="eyebrow">Job List</p>
+    <h1>职位列表</h1>
+    <p>当前共收录 {{ total_jobs }} 个职位</p>
+</section>
+
+<section class="card-list">
+    {% for job in page_obj %}
+        <article class="job-card">
+            <div>
+                <h2><a href="{% url 'job_detail' job.id %}">{{ job.title }}</a></h2>
+                <p class="muted">
+                    {% if job.company %}
+                        <a href="{% url 'company_detail' job.company.id %}">{{ job.company.name }}</a>
+                    {% else %}
+                        未知公司
+                    {% endif %}
+                </p>
+            </div>
+            <div class="job-meta">
+                <span>{{ job.city|default:"地点未知" }}</span>
+                <span>{{ job.salary|default:"薪资面议" }}</span>
+                <span>{{ job.published_time|default:"发布时间未知" }}</span>
+            </div>
+        </article>
+    {% empty %}
+        <p class="empty">暂时没有职位数据。</p>
+    {% endfor %}
+</section>
+
+{% include "jobs/pagination.html" %}
+{% endblock %}

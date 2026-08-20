@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}招聘信息检索系统{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'jobs/css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-left">
+            <a class="brand" href="{% url 'home' %}">招聘信息检索系统</a>
+            <nav class="nav-links">
+                <a href="{% url 'job_list' %}">职位列表</a>
+                <a href="{% url 'company_list' %}">公司列表</a>
+            </nav>
+        </div>
+        <form class="top-search" action="{% url 'search' %}" method="get">
+            <input class="top-search-input" name="q" type="search" maxlength="50" placeholder="搜索职位、城市、公司或行业" value="{{ request.GET.q }}">
+            <div class="search-type">
+                <label>
+                    <input name="type" type="radio" value="job" {% if request.GET.type != "company" %}checked{% endif %}>
+                    <span>职位</span>
+                </label>
+                <label>
+                    <input name="type" type="radio" value="company" {% if request.GET.type == "company" %}checked{% endif %}>
+                    <span>公司</span>
+                </label>
+            </div>
+            <button type="submit">搜索</button>
+        </form>
+    </header>
+
+    <main class="page">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
